@@ -8,6 +8,12 @@ app.use(express.static(join(__dirname, 'client', 'build')))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.use(require('./routes'))
+
+app.get('*', (req,res) => {
+  res.sendFile(join(__dirname, 'client', 'build', 'index.html'))
+})
+
 require('mongoose').connect(process.env.MONGODB_URI || process.env.LOCAL_URI, {
   useNewURLParser: true,
   useUnifiedTopology: true
