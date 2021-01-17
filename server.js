@@ -18,5 +18,5 @@ require('mongoose').connect(process.env.MONGODB_URI || process.env.LOCAL_URI, {
   useNewURLParser: true,
   useUnifiedTopology: true
 })
-  .then(() => app.listen(process.env.PORT || 3000))
+  .then(() => app.listen(process.env.PORT || 3001))
   .catch(err => console.error(err))
