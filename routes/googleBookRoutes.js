@@ -7,9 +7,17 @@ router.get('/googlebooks/:search', (req, res) => {
     .then(({ data }) => {
       Book.find()
         .then(books => {
-          const booksFiltered = 
+          const booksFiltered = data.items.filter(book => { 
+            let keep = true
+            books.forEach(saved => {
+              if (saved.bookId === book.id) {
+                keep = false
+              }
+            })
+            return keep
+          })
+          res.json(booksFiltered)
         })
-      res.json(data.items)
     })
     .catch(err => console.error(err))
 })
