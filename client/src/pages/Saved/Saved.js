@@ -28,6 +28,12 @@ const Saved = () => {
 
   bookState.handleDeleteBook = book => {
     axios.delete(`/api/books/${book._id}`)
+    .then(() => {
+      const books = JSON.parse(JSON.stringify(bookState.books))
+      const booksFiltered = books.filter(bewk => bewk._id !== book._id)
+      setBookState({ ...bookState, books: booksFiltered })
+    })
+    .catch(err => console.error(err))
   }
 
   useEffect(() => {
