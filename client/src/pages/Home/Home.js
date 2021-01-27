@@ -42,6 +42,23 @@ const Home = () => {
       .catch(err => console.error(err))
   }
 
+  bookState.handleSaveBook = book => {
+    axios.post('/api/books', {
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors[0],
+      description: book.volumeInfo.description,
+      image: book.volumeInfo.imageLinks.thumbnail,
+      link: book.volumeInfo.infoLink,
+      bookId: book.id
+    })
+      .then(() => {
+        const books = bookState.books
+        const booksFiltered = books.filter(bewk => bewk.id !== book.id)
+        setBookState({ ...bookState, books: booksFiltered })
+      })
+      .catch(err => console.error(err))
+  } 
+
   return (
     <>
       <form onSubmit={bookState.handleSearchBook}>
@@ -70,8 +87,14 @@ const Home = () => {
                   title={book.volumeInfo.title}
                 />
               <CardActions>
-                <Button size="small" color="primary">
+                <Button 
+                  size="small" 
+                  color="primary"
+                  onClick={() => bookState.handleSaveBook(book)}>
                   Save
+                </Button>
+                <Button size="small" color="primary" href={book.volumeInfo.infoLink}>
+                  View Book
                 </Button>
               </CardActions>
             </Card>
