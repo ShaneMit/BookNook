@@ -21,6 +21,8 @@ const useStyles = makeStyles({
 });
 
 const Home = () => {
+  const classes = useStyles()
+
   const [ bookState, setBookState ] = useState({
     search: '',
     books: []
@@ -61,7 +63,7 @@ const Home = () => {
             <Card className={classes.root}>
                 <CardMedia
                   className={classes.media}
-                  image={book.volumeinfo.imageLinks.thumbnail}
+                  image={book.volumeInfo.imageLinks.thumbnail}
                   title={book.volumeInfo.title}
                 />
                 <CardHeader
