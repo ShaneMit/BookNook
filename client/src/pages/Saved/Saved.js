@@ -48,26 +48,34 @@ const Saved = () => {
       {
           bookState.books.map(book => (
             <Card className={classes.root}>
-                <CardMedia
-                  className={classes.media}
-                  image={book.image}
-                  title={book.title}
-                />
-                <CardHeader
-                  title={book.title}
-                />
-              <CardActions>
-                <Button 
-                  size="small" 
-                  color="secondary"
-                  onClick={() => bookState.handleDeleteBook(book)}>
-                  Delete
+            
+            <CardMedia
+              className={classes.media}
+              image={book.image}
+              title={book.title}
+            />
+            <CardHeader
+              title={book.title}
+            />
+            <Typography>
+              {book.authors}
+            </Typography>
+            <Typography>
+              {book.description}
+            </Typography>
+
+            <CardActions>
+              <Button
+                size="small"
+                color="secondary"
+                onClick={() => bookState.handleDeleteBook(book)}>
+                Delete
                 </Button>
-                <Button size="small" color="primary" href={book.link}>
-                  View Book
+              <Button size="small" color="primary" href={book.link}>
+                View Book
                 </Button>
-              </CardActions>
-            </Card>
+            </CardActions>
+          </Card>
           ))
         }
     </div>
