@@ -78,19 +78,27 @@ const Home = () => {
         {
           bookState.books.map(book => (
             <Card className={classes.root}>
+              
                 <CardMedia
                   className={classes.media}
                   image={book.volumeInfo.imageLinks.thumbnail}
                   title={book.volumeInfo.title}
                 />
-                <CardHeader
-                  title={book.volumeInfo.title}
-                />
+              <CardHeader
+                title={book.volumeInfo.title}
+              />
+                <Typography>
+                {book.volumeInfo.authors}
+                </Typography>
+                <Typography>
+                  {book.volumeInfo.description}
+                </Typography>
+
               <CardActions>
                 <Button 
-                  size="small" 
-                  color="primary"
-                  onClick={() => bookState.handleSaveBook(book)}>
+                size="small" 
+                color="primary"
+                onClick={() => bookState.handleSaveBook(book)}>
                   Save
                 </Button>
                 <Button size="small" color="primary" href={book.volumeInfo.infoLink}>
